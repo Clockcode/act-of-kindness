@@ -23,7 +23,7 @@ The following variables are necessary to [publish your App](https://miniapps.far
   - payload
   - signature
 
-If you want to use notification you can use [Upstash](https://upstash.com/redis). Free tier works fine to get started.
+If you want to use notifications you can use [Upstash](https://upstash.com/redis). Free tier works fine to get started.
 
 - REDIS_URL=
 - REDIS_TOKEN=
