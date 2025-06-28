@@ -21,7 +21,7 @@ export function Account() {
 
       <div className="avatar">
         <div className="w-8 rounded-full">
-          <img src={account.pfpUrl} />
+          <img src={account.pfpUrl} alt="Profile" />
         </div>
       </div>
     </div>

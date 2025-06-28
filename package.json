@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "tunnel": "ngrok http 3000 --log=stdout",
+    "dev": "next dev -p 3001",
+    "tunnel": "ngrok http 3001 --log=stdout",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

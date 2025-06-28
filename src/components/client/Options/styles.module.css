@@ -1,0 +1,17 @@
+.options {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.option {
+  background-color: rgba(var(--button-rgb), 1);
+  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  width: 100%;
+  color: #000;
+  font-weight: bold;
+}

@@ -7,8 +7,8 @@ import {
 } from "@/utils/config";
 import { PropsWithChildren } from "react";
 import Link from "next/link";
-import { Account } from "./account";
-import { Back } from "./back";
+import { Account } from "./client/account";
+import { Back } from "./client/back";
 
 export function Layout(props: PropsWithChildren) {
   return (
