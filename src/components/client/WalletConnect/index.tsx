@@ -1,18 +1,33 @@
 'use client'
 
-import { useAccount, useConnect } from 'wagmi'
+import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import { injected } from 'wagmi/connectors'
 
 export default function WalletConnect() {
   const { isConnected, address } = useAccount()
-  const { connect } = useConnect()
+  const { connect, isPending } = useConnect()
+  const { disconnect } = useDisconnect()
 
-  if (isConnected) {
+  const formatAddress = (addr: string) => {
+    return `${addr.slice(0, 6)}...${addr.slice(-4)}`
+  }
+
+  if (isConnected && address) {
     return (
-      <>
-        <div>You&apos;re connected!</div>
-        <div>Address: {address}</div>
-      </>
+      <div className="flex flex-col items-center gap-3">
+        <div className="badge badge-success badge-lg px-4 py-3">
+          <span className="text-sm font-medium">
+            🟢 Connected: {formatAddress(address)}
+          </span>
+        </div>
+        <button
+          type="button"
+          onClick={() => disconnect()}
+          className="btn btn-ghost btn-sm text-gray-500 hover:text-error"
+        >
+          Disconnect
+        </button>
+      </div>
     )
   }
 
@@ -20,8 +35,20 @@ export default function WalletConnect() {
     <button
       type="button"
       onClick={() => connect({ connector: injected() })}
+      disabled={isPending}
+      className="btn btn-primary btn-lg px-8 py-4 h-auto font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
     >
-      Connect
+      {isPending ? (
+        <>
+          <span className="loading loading-spinner loading-sm mr-2"></span>
+          Connecting...
+        </>
+      ) : (
+        <>
+          <span className="text-2xl mr-3">🔗</span>
+          Connect Wallet
+        </>
+      )}
     </button>
   )
 }

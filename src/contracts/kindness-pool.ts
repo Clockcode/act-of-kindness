@@ -190,10 +190,17 @@ export const USER_REGISTRY_ABI = [
     inputs: [{ name: 'user', type: 'address' }],
     name: 'getUserStats',
     outputs: [
-      { name: 'totalGiven', type: 'uint256' },
-      { name: 'totalReceived', type: 'uint256' },
-      { name: 'netAmount', type: 'int256' },
-      { name: 'lastActionTime', type: 'uint256' },
+      {
+        components: [
+          { name: 'totalGiven', type: 'uint256' },
+          { name: 'totalReceived', type: 'uint256' },
+          { name: 'timesReceived', type: 'uint256' },
+          { name: 'lastActionTime', type: 'uint256' },
+          { name: 'name', type: 'string' },
+          { name: 'isInReceiverPool', type: 'bool' },
+        ],
+        type: 'tuple',
+      },
     ],
     stateMutability: 'view',
     type: 'function',
@@ -203,6 +210,13 @@ export const USER_REGISTRY_ABI = [
     name: 'isInReceiverPool',
     outputs: [{ name: '', type: 'bool' }],
     stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ name: 'name', type: 'string' }],
+    name: 'setName',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function',
   },
 ] as const;

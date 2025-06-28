@@ -2,46 +2,55 @@ import { useReadContract } from 'wagmi';
 import { formatEther } from 'viem';
 import { KINDNESS_POOL_ADDRESS, KINDNESS_POOL_ABI, CONTRACT_CONSTANTS } from '@/contracts/kindness-pool';
 
+// Development mode - set to true for local development without deployed contracts
+const DEVELOPMENT_MODE = true;
+
 /**
  * Custom hook to fetch dynamic contract constants
  * Falls back to static constants if contract calls fail
  */
 export function useContractConstants() {
-  // Fetch dynamic constants from contract
+  // Fetch dynamic constants from contract (only in production mode)
   const { data: minKindnessAmount } = useReadContract({
     address: KINDNESS_POOL_ADDRESS,
     abi: KINDNESS_POOL_ABI,
     functionName: 'MIN_KINDNESS_AMOUNT',
+    query: { enabled: !DEVELOPMENT_MODE },
   });
 
   const { data: maxKindnessAmount } = useReadContract({
     address: KINDNESS_POOL_ADDRESS,
     abi: KINDNESS_POOL_ABI,
     functionName: 'MAX_KINDNESS_AMOUNT',
+    query: { enabled: !DEVELOPMENT_MODE },
   });
 
   const { data: maxDailyContribution } = useReadContract({
     address: KINDNESS_POOL_ADDRESS,
     abi: KINDNESS_POOL_ABI,
     functionName: 'MAX_DAILY_CONTRIBUTION',
+    query: { enabled: !DEVELOPMENT_MODE },
   });
 
   const { data: maxReceivers } = useReadContract({
     address: KINDNESS_POOL_ADDRESS,
     abi: KINDNESS_POOL_ABI,
     functionName: 'MAX_RECEIVERS',
+    query: { enabled: !DEVELOPMENT_MODE },
   });
 
   const { data: actionCooldown } = useReadContract({
     address: KINDNESS_POOL_ADDRESS,
     abi: KINDNESS_POOL_ABI,
     functionName: 'ACTION_COOLDOWN',
+    query: { enabled: !DEVELOPMENT_MODE },
   });
 
   const { data: receiverPoolCooldown } = useReadContract({
     address: KINDNESS_POOL_ADDRESS,
     abi: KINDNESS_POOL_ABI,
     functionName: 'RECEIVER_POOL_COOLDOWN',
+    query: { enabled: !DEVELOPMENT_MODE },
   });
 
   return {

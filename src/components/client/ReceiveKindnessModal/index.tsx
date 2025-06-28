@@ -2,9 +2,12 @@
 
 import { useState } from 'react';
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
-import { formatEther } from 'viem';
+import { formatEther, parseEther } from 'viem';
 import { KINDNESS_POOL_ADDRESS, KINDNESS_POOL_ABI, USER_REGISTRY_ADDRESS, USER_REGISTRY_ABI } from '@/contracts/kindness-pool';
 import { useContractConstants } from '@/hooks/useContractConstants';
+
+// Development mode - set to true for local development without deployed contracts
+const DEVELOPMENT_MODE = true;
 
 interface ReceiveKindnessModalProps {
   onClose: () => void;
@@ -14,34 +17,72 @@ export default function ReceiveKindnessModal({ onClose }: ReceiveKindnessModalPr
   const { address, isConnected } = useAccount();
   const [isConfirmed, setIsConfirmed] = useState(false);
 
-  // Get dynamic contract data
-  const { data: dailyPool } = useReadContract({
+  // Mock data for development mode
+  const mockDailyPool = parseEther('2.5'); // 2.5 ETH
+  const mockReceiverCount = 15;
+  const mockIsInReceiverPool = false;
+  const mockUserStats = [
+    0n, // contributionAmount
+    0n, // receiverEntries  
+    0n, // receiverExits
+    0n, // lastResetDay
+    true, // canContribute
+    true, // canEnterReceiverPool
+    false, // canLeaveReceiverPool
+  ];
+
+  // Get dynamic contract data with automatic refetching (only in production)
+  const { data: dailyPool, isLoading: isDailyPoolLoading } = useReadContract({
     address: KINDNESS_POOL_ADDRESS,
     abi: KINDNESS_POOL_ABI,
     functionName: 'dailyPool',
+    query: {
+      enabled: !DEVELOPMENT_MODE,
+      refetchInterval: 5000, // Refetch every 5 seconds
+    },
   });
 
-  const { data: receiverCount } = useReadContract({
+  const { data: receiverCount, isLoading: isReceiverCountLoading } = useReadContract({
     address: KINDNESS_POOL_ADDRESS,
     abi: KINDNESS_POOL_ABI,
     functionName: 'getReceiverCount',
+    query: {
+      enabled: !DEVELOPMENT_MODE,
+      refetchInterval: 5000, // Refetch every 5 seconds
+    },
   });
 
-  const { data: isInReceiverPool } = useReadContract({
+  const { data: isInReceiverPool, isLoading: isReceiverPoolStatusLoading } = useReadContract({
     address: USER_REGISTRY_ADDRESS,
     abi: USER_REGISTRY_ABI,
     functionName: 'isInReceiverPool',
     args: address ? [address] : undefined,
-    query: { enabled: !!address },
+    query: { 
+      enabled: !!address && !DEVELOPMENT_MODE,
+      refetchInterval: 3000, // Refetch every 3 seconds
+    },
   });
 
-  const { data: userStats } = useReadContract({
+  const { data: userStats, isLoading: isUserStatsLoading } = useReadContract({
     address: KINDNESS_POOL_ADDRESS,
     abi: KINDNESS_POOL_ABI,
     functionName: 'getUserDailyStats',
     args: address ? [address] : undefined,
-    query: { enabled: !!address },
+    query: { 
+      enabled: !!address && !DEVELOPMENT_MODE,
+      refetchInterval: 3000, // Refetch every 3 seconds
+    },
   });
+
+  // Use mock data in development mode
+  const finalDailyPool = DEVELOPMENT_MODE ? mockDailyPool : dailyPool;
+  const finalReceiverCount = DEVELOPMENT_MODE ? mockReceiverCount : receiverCount;
+  const finalIsInReceiverPool = DEVELOPMENT_MODE ? mockIsInReceiverPool : isInReceiverPool;
+  const finalUserStats = DEVELOPMENT_MODE ? mockUserStats : userStats;
+  const finalIsDailyPoolLoading = DEVELOPMENT_MODE ? false : isDailyPoolLoading;
+  const finalIsReceiverCountLoading = DEVELOPMENT_MODE ? false : isReceiverCountLoading;
+  const finalIsReceiverPoolStatusLoading = DEVELOPMENT_MODE ? false : isReceiverPoolStatusLoading;
+  const finalIsUserStatsLoading = DEVELOPMENT_MODE ? false : isUserStatsLoading;
 
   const { writeContract: writeEnter, data: enterHash, isPending: isEnterPending } = useWriteContract();
   const { writeContract: writeLeave, data: leaveHash, isPending: isLeavePending } = useWriteContract();
@@ -58,9 +99,9 @@ export default function ReceiveKindnessModal({ onClose }: ReceiveKindnessModalPr
   const constants = useContractConstants();
   
   const maxReceivers = constants.maxReceivers;
-  const canEnterPool = userStats ? userStats[5] : false; // canEnterReceiverPool from getUserDailyStats
-  const canLeavePool = userStats ? userStats[6] : false; // canLeaveReceiverPool from getUserDailyStats
-  const isCurrentlyInPool = isInReceiverPool || false;
+  const canEnterPool = finalUserStats ? finalUserStats[5] : false; // canEnterReceiverPool from getUserDailyStats
+  const canLeavePool = finalUserStats ? finalUserStats[6] : false; // canLeaveReceiverPool from getUserDailyStats
+  const isCurrentlyInPool = finalIsInReceiverPool || false;
   
   const isProcessing = isEnterPending || isLeavePending || isEnterLoading || isLeaveLoading;
 
@@ -183,48 +224,93 @@ export default function ReceiveKindnessModal({ onClose }: ReceiveKindnessModalPr
             </p>
           </div>
 
-          <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
-            <h4 className="font-semibold mb-2 text-gray-800 dark:text-white">Pool Status</h4>
+          <div className="bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 border border-blue-200 dark:border-blue-800 p-4 rounded-lg">
+            <h4 className="font-semibold mb-3 text-gray-800 dark:text-white flex items-center gap-2">
+              <span className="text-blue-500">🎯</span>
+              Live Pool Status
+            </h4>
             <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <span className="text-gray-600 dark:text-gray-400">Today&apos;s Pool:</span>
                 <div className="font-medium text-gray-800 dark:text-white">
-                  {dailyPool ? `${parseFloat(formatEther(dailyPool)).toFixed(3)} ETH` : '0 ETH'}
+                  {finalIsDailyPoolLoading ? (
+                    <span className="loading loading-dots loading-sm"></span>
+                  ) : finalDailyPool ? (
+                    `${parseFloat(formatEther(finalDailyPool)).toFixed(3)} ETH`
+                  ) : (
+                    '0 ETH'
+                  )}
                 </div>
               </div>
               <div>
                 <span className="text-gray-600 dark:text-gray-400">Receivers:</span>
                 <div className="font-medium text-gray-800 dark:text-white">
-                  {receiverCount !== undefined ? receiverCount.toString() : '0'}/{maxReceivers}
+                  {finalIsReceiverCountLoading ? (
+                    <span className="loading loading-dots loading-sm"></span>
+                  ) : (
+                    `${finalReceiverCount !== undefined ? finalReceiverCount.toString() : '0'}/${maxReceivers}`
+                  )}
                 </div>
               </div>
               <div className="col-span-2">
                 <span className="text-gray-600 dark:text-gray-400">Your Status:</span>
                 <div className="font-medium text-gray-800 dark:text-white">
-                  {isCurrentlyInPool ? (
-                    <span className="text-green-600">✓ In Receiver Pool</span>
+                  {finalIsReceiverPoolStatusLoading ? (
+                    <span className="loading loading-dots loading-sm"></span>
+                  ) : isCurrentlyInPool ? (
+                    <span className="text-green-600 flex items-center gap-1">
+                      <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                      In Receiver Pool
+                    </span>
                   ) : (
-                    <span>Not in Pool</span>
+                    <span className="text-gray-500">Not in Pool</span>
                   )}
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
-            <h4 className="font-semibold mb-2 text-gray-800 dark:text-white">Requirements & Rules:</h4>
-            <ul className="text-sm space-y-1 text-gray-600 dark:text-gray-300">
-              <li>• Cannot have contributed today to enter</li>
-              <li>• Maximum {maxReceivers} receivers in the pool</li>
-              <li>• {constants.receiverPoolCooldownMinutes} minutes cooldown between pool changes</li>
-              <li>• Pool is distributed randomly at day&apos;s end</li>
-              <li>• Can leave the pool anytime before distribution</li>
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800 p-4 rounded-lg">
+            <h4 className="font-semibold mb-3 text-gray-800 dark:text-white flex items-center gap-2">
+              <span className="text-amber-500">📜</span>
+              Requirements & Rules
+            </h4>
+            <ul className="text-sm space-y-2 text-gray-600 dark:text-gray-300">
+              <li className="flex items-start gap-2">
+                <span className="text-red-500 text-xs">•</span>
+                <span>Cannot have contributed today to enter</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-500 text-xs">•</span>
+                <span>Maximum {maxReceivers} receivers in the pool</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-yellow-500 text-xs">•</span>
+                <span>{constants.receiverPoolCooldownMinutes} minutes cooldown between pool changes</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-500 text-xs">•</span>
+                <span>Pool is distributed randomly at day&apos;s end</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-purple-500 text-xs">•</span>
+                <span>Can leave the pool anytime before distribution</span>
+              </li>
             </ul>
           </div>
 
           {!isConnected && (
-            <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4">
-              <p className="text-yellow-700">Please connect your wallet first</p>
+            <div className="bg-yellow-100 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded">
+              <p className="text-yellow-700 dark:text-yellow-300 font-medium">Please connect your wallet first</p>
+            </div>
+          )}
+
+          {isConnected && finalIsUserStatsLoading && (
+            <div className="bg-blue-100 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded">
+              <div className="flex items-center gap-2">
+                <span className="loading loading-spinner loading-sm"></span>
+                <p className="text-blue-700 dark:text-blue-300 text-sm">Loading your account status...</p>
+              </div>
             </div>
           )}
 
