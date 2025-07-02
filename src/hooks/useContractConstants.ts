@@ -3,7 +3,7 @@ import { formatEther } from 'viem';
 import { KINDNESS_POOL_ADDRESS, KINDNESS_POOL_ABI, CONTRACT_CONSTANTS } from '@/contracts/kindness-pool';
 
 // Development mode - set to true for local development without deployed contracts
-const DEVELOPMENT_MODE = true;
+const DEVELOPMENT_MODE = false;
 
 /**
  * Custom hook to fetch dynamic contract constants

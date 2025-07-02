@@ -1,0 +1,10 @@
+<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="4.658491">
+<testsuite name="basic-smoke.spec.ts" timestamp="2025-07-02T21:13:44.131Z" hostname="chromium" tests="3" failures="0" skipped="0" time="9.655" errors="0">
+<testcase name="Basic Smoke Tests › should load the application homepage" classname="basic-smoke.spec.ts" time="1.223">
+</testcase>
+<testcase name="Basic Smoke Tests › should have basic interactive elements" classname="basic-smoke.spec.ts" time="4.225">
+</testcase>
+<testcase name="Basic Smoke Tests › should not have critical console errors" classname="basic-smoke.spec.ts" time="4.207">
+</testcase>
+</testsuite>
+</testsuites>

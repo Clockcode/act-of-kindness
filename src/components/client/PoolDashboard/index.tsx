@@ -120,7 +120,7 @@ export default function PoolDashboard() {
                 <div className="bg-base-200 p-4 rounded-lg">
                   <div className="text-sm text-base-content/70">Contributed Today</div>
                   <div className="text-lg font-bold text-primary">
-                    {userStats && userStats[0] ? `${formatEther(userStats[0])} ETH` : '0 ETH'}
+                    {userStats?.[0] ? `${formatEther(userStats[0])} ETH` : '0 ETH'}
                   </div>
                 </div>
                 
@@ -159,21 +159,24 @@ export default function PoolDashboard() {
                   <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-4 rounded-lg border border-primary/20">
                     <div className="text-sm text-base-content/70">Total Given</div>
                     <div className="text-xl font-bold text-primary">
-                      {formatEther(userTotalStats[0])} ETH
+                      {userTotalStats?.totalGiven ? formatEther(userTotalStats.totalGiven) : '0'} ETH
                     </div>
                   </div>
                   
                   <div className="bg-gradient-to-br from-secondary/10 to-secondary/5 p-4 rounded-lg border border-secondary/20">
                     <div className="text-sm text-base-content/70">Total Received</div>
                     <div className="text-xl font-bold text-secondary">
-                      {formatEther(userTotalStats[1])} ETH
+                      {userTotalStats?.totalReceived ? formatEther(userTotalStats.totalReceived) : '0'} ETH
                     </div>
                   </div>
                   
                   <div className="bg-gradient-to-br from-accent/10 to-accent/5 p-4 rounded-lg border border-accent/20">
                     <div className="text-sm text-base-content/70">Net Balance</div>
-                    <div className={`text-xl font-bold ${userTotalStats[2] >= 0 ? 'text-success' : 'text-error'}`}>
-                      {userTotalStats[2] >= 0 ? '+' : ''}{formatEther(BigInt(userTotalStats[2]))} ETH
+                    <div className={`text-xl font-bold ${userTotalStats && (userTotalStats.totalReceived >= userTotalStats.totalGiven) ? 'text-success' : 'text-error'}`}>
+                      {userTotalStats ? 
+                        `${userTotalStats.totalReceived >= userTotalStats.totalGiven ? '+' : ''}${formatEther(userTotalStats.totalReceived - userTotalStats.totalGiven)} ETH` : 
+                        '0 ETH'
+                      }
                     </div>
                   </div>
                 </div>

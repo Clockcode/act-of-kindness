@@ -8,7 +8,10 @@ export function useFarcasterContext(enabled: boolean = true) {
     queryFn: async () => {
       const context = await sdk.context;
       if (!context) {
-        console.log("No Farcaster context available...");
+        // Only log in development, and make it less prominent
+        if (process.env.NODE_ENV === 'development') {
+          console.debug("No Farcaster context available (likely not in Farcaster frame)");
+        }
         return null;
       }
 

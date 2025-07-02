@@ -11,6 +11,7 @@ import {
 } from "@/utils/config";
 import { Layout } from "@/components/layout";
 import { Providers } from "@/context";
+import ErrorFilter from "@/components/client/ErrorFilter";
 import "@/assets/globals.css";
 
 export const metadata: Metadata = {
@@ -64,6 +65,7 @@ export default function RootLayout(props: PropsWithChildren) {
   return (
     <html lang="en">
       <body className={`antialiased`}>
+        <ErrorFilter />
         <Providers>
           <Layout>{props.children}</Layout>
         </Providers>

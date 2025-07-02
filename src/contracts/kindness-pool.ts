@@ -1,6 +1,6 @@
 // Kindness Pool Contract Configuration
 export const KINDNESS_POOL_ADDRESS = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512' as const;
-export const USER_REGISTRY_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3' as const;
+export const USER_REGISTRY_ADDRESS = '0xCafac3dD18aC6c6e92c921884f9E4176737C052c' as const;
 export const TIME_BASED_DISTRIBUTOR_ADDRESS = '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9' as const;
 
 // Complete Pool Contract ABI

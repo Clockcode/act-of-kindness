@@ -14,9 +14,9 @@ export default function WalletConnect() {
 
   if (isConnected && address) {
     return (
-      <div className="flex flex-col items-center gap-3">
+      <div className="flex flex-col items-center gap-3" data-testid="wallet-connected">
         <div className="badge badge-success badge-lg px-4 py-3">
-          <span className="text-sm font-medium">
+          <span className="text-sm font-medium" data-testid="connected-address">
             🟢 Connected: {formatAddress(address)}
           </span>
         </div>
@@ -24,6 +24,7 @@ export default function WalletConnect() {
           type="button"
           onClick={() => disconnect()}
           className="btn btn-ghost btn-sm text-gray-500 hover:text-error"
+          data-testid="disconnect-button"
         >
           Disconnect
         </button>
@@ -37,6 +38,7 @@ export default function WalletConnect() {
       onClick={() => connect({ connector: injected() })}
       disabled={isPending}
       className="btn btn-primary btn-lg px-8 py-4 h-auto font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+      data-testid="connect-wallet-button"
     >
       {isPending ? (
         <>

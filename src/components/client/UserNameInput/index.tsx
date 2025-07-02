@@ -53,11 +53,11 @@ export default function UserNameInput({ onClose }: UserNameInputProps) {
   // Show success state if name was set successfully
   if (isSubmitted && hasName && !isSettingName) {
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" data-testid="name-success-modal">
         <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4">
           <div className="text-center space-y-4">
             <div className="text-4xl">✅</div>
-            <h2 className="text-2xl font-bold text-green-600">
+            <h2 className="text-2xl font-bold text-green-600" data-testid="success-message">
               Welcome to the Community!
             </h2>
             <p className="text-gray-600 dark:text-gray-300">
@@ -73,11 +73,11 @@ export default function UserNameInput({ onClose }: UserNameInputProps) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" data-testid="name-input-modal">
       <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4">
         <div className="text-center mb-6">
           <div className="text-4xl mb-4">👋</div>
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2" data-testid="modal-title">
             Welcome to Kindness Pool!
           </h2>
           <p className="text-gray-600 dark:text-gray-300">
@@ -85,7 +85,7 @@ export default function UserNameInput({ onClose }: UserNameInputProps) {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4" data-testid="name-form">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Your Name
@@ -102,9 +102,10 @@ export default function UserNameInput({ onClose }: UserNameInputProps) {
               maxLength={32}
               disabled={isSettingName}
               autoFocus
+              data-testid="name-input"
             />
             {(error || transactionError) && (
-              <p className="text-sm text-red-500 mt-1">
+              <p className="text-sm text-red-500 mt-1" data-testid="error-message">
                 {error || (transactionError ? 'Transaction failed. Please try again.' : '')}
               </p>
             )}
@@ -124,6 +125,7 @@ export default function UserNameInput({ onClose }: UserNameInputProps) {
               type="submit"
               className="flex-1 bg-primary hover:bg-primary/90 disabled:bg-gray-400 text-white py-3 px-4 rounded-lg font-medium flex items-center justify-center transition-colors"
               disabled={!localName.trim() || isSettingName}
+              data-testid="submit-name-button"
             >
               {isTransactionPending ? (
                 <>
