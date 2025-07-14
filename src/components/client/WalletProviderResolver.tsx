@@ -35,7 +35,7 @@ export default function WalletProviderResolver() {
 
   if (hasConflict) {
     return (
-      <div className="alert alert-warning mb-4">
+      <div className="alert alert-warning mb-4" suppressHydrationWarning>
         <span>⚠️ Multiple wallet extensions detected. Please disable conflicting wallet extensions for best experience.</span>
       </div>
     );

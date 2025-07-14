@@ -16,15 +16,11 @@ test.describe('Main User Flows', () => {
   test.beforeEach(async ({ page }) => {
     homePage = new HomePage(page);
     
-    // Start with clean state
+    // Start with clean state (this also navigates to the page)
     await clearAppState(page);
     
     // Setup as returning user for main flow tests
     await setupReturningUser(page, 'Test User');
-    
-    // Navigate to home page
-    await homePage.goto();
-    await waitForPageLoad(page);
     
     // Verify we're in the main app state
     await homePage.verifyReturningUserState('Test User');

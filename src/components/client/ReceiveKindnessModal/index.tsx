@@ -22,10 +22,10 @@ export default function ReceiveKindnessModal({ onClose }: ReceiveKindnessModalPr
   const mockReceiverCount = 15;
   const mockIsInReceiverPool = false;
   const mockUserStats = [
-    0n, // contributionAmount
-    0n, // receiverEntries  
-    0n, // receiverExits
-    0n, // lastResetDay
+    BigInt(0), // contributionAmount
+    BigInt(0), // receiverEntries  
+    BigInt(0), // receiverExits
+    BigInt(0), // lastResetDay
     true, // canContribute
     true, // canEnterReceiverPool
     false, // canLeaveReceiverPool

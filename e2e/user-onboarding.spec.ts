@@ -19,12 +19,8 @@ test.describe('User Onboarding Flow', () => {
     homePage = new HomePage(page);
     nameModal = new UserNameInputModal(page);
     
-    // Start with clean state
+    // Start with clean state (this also navigates to the page)
     await clearAppState(page);
-    
-    // Navigate to home page
-    await homePage.goto();
-    await waitForPageLoad(page);
   });
 
   test('should display wallet connection flow for new users', async ({ page }) => {

@@ -14,7 +14,6 @@ export default function UserNameInput({ onClose }: UserNameInputProps) {
     setUserName, 
     isSettingName, 
     hasName,
-    isTransactionSuccess,
     isTransactionPending,
     isTransactionLoading,
     error: transactionError

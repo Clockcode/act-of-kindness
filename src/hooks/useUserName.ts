@@ -1,6 +1,7 @@
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { USER_REGISTRY_ADDRESS, USER_REGISTRY_ABI } from '@/contracts/kindness-pool';
 import { useState, useEffect } from 'react';
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 
 // Development mode - set to true for local development without deployed contracts
 const DEVELOPMENT_MODE = true;
@@ -11,14 +12,8 @@ export function useUserName() {
   const [isSettingName, setIsSettingName] = useState(false);
   
   // Use localStorage to persist dev name across sessions/refreshes
-  const getStoredName = () => {
-    if (typeof window !== 'undefined' && address) {
-      return localStorage.getItem(`userName_${address}`) || '';
-    }
-    return '';
-  };
-  
-  const [devUserName, setDevUserName] = useState<string>(getStoredName);
+  // Initialize with empty string to prevent hydration mismatch
+  const [devUserName, setDevUserName] = useState<string>('');
 
   // Get user stats which includes the name (only in production mode)
   const { data: userStats, refetch: refetchUserStats } = useReadContract({
@@ -36,9 +31,10 @@ export function useUserName() {
   });
 
   // Update dev name from localStorage when address changes
-  useEffect(() => {
-    if (DEVELOPMENT_MODE && address) {
-      const storedName = getStoredName();
+  // Use isomorphic layout effect to prevent hydration mismatch
+  useIsomorphicLayoutEffect(() => {
+    if (DEVELOPMENT_MODE && address && typeof window !== 'undefined') {
+      const storedName = localStorage.getItem(`userName_${address}`) || '';
       setDevUserName(storedName);
     }
   }, [address]);

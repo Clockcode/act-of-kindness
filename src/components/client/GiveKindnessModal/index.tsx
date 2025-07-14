@@ -14,7 +14,6 @@ export default function GiveKindnessModal({ onClose }: GiveKindnessModalProps) {
   const { address, isConnected } = useAccount();
   const [kindnessAmount, setKindnessAmount] = useState('0.01');
   const [isConfirmed, setIsConfirmed] = useState(false);
-  const [isProcessing, setIsProcessing] = useState(false);
 
   // Get dynamic contract data
   const { data: userStats } = useReadContract({
@@ -33,7 +32,7 @@ export default function GiveKindnessModal({ onClose }: GiveKindnessModalProps) {
     query: { enabled: !!address },
   });
 
-  const { writeContract, data: hash, error, isPending } = useWriteContract();
+  const { writeContract, data: hash, isPending } = useWriteContract();
   
   const { isLoading: isTransactionLoading, isSuccess: isTransactionSuccess } = useWaitForTransactionReceipt({
     hash,

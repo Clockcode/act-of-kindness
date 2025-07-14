@@ -1,9 +1,10 @@
 import React from 'react'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Home from '../page'
 import { useAccount } from 'wagmi'
 import { useUserName } from '@/hooks/useUserName'
+import { testHydrationConsistency } from '@/__tests__/utils/hydration-testing'
 
 jest.mock('wagmi')
 jest.mock('@/hooks/useUserName')
@@ -321,6 +322,22 @@ describe('Home Page', () => {
     
     expect(screen.queryByTestId('pool-dashboard')).not.toBeInTheDocument()
   })
+
+  // Test hydration consistency
+  it('should hydrate correctly without mismatches', testHydrationConsistency(
+    React.createElement(() => {
+      mockUseAccount.mockReturnValue({ isConnected: false } as any)
+      mockUseUserName.mockReturnValue({
+        userName: '',
+        hasName: false,
+        isFirstTime: true,
+        isLoading: false,
+        error: null,
+        setName: jest.fn()
+      })
+      return <Home />
+    })
+  ))
 
   it('should handle multiple modals correctly', async () => {
     const user = userEvent.setup()

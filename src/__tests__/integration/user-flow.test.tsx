@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Home from '@/app/page'
 import { useAccount } from 'wagmi'
@@ -20,7 +20,7 @@ describe('User Flow Integration Tests', () => {
   })
 
   it('should complete full first-time user onboarding flow', async () => {
-    const user = userEvent.setup()
+    const userEventInstance = userEvent.setup()
     
     // Step 1: User arrives, wallet not connected
     mockUseAccount.mockReturnValue({
@@ -57,7 +57,7 @@ describe('User Flow Integration Tests', () => {
     
     // Step 3: User clicks set name button
     const setNameButton = screen.getByText('Set Your Name')
-    await user.click(setNameButton)
+    await userEventInstance.click(setNameButton)
     
     // Should see name input modal
     expect(screen.getByText('Set Your Name')).toBeInTheDocument()
@@ -65,10 +65,10 @@ describe('User Flow Integration Tests', () => {
     
     // Step 4: User enters name and submits
     const nameInput = screen.getByPlaceholderText('Enter your name...')
-    await user.type(nameInput, 'John Doe')
+    await userEventInstance.type(nameInput, 'John Doe')
     
     const confirmButton = screen.getByText('Confirm')
-    await user.click(confirmButton)
+    await userEventInstance.click(confirmButton)
     
     expect(mockSetName).toHaveBeenCalledWith('John Doe')
     
@@ -91,8 +91,6 @@ describe('User Flow Integration Tests', () => {
   })
 
   it('should handle returning user flow', async () => {
-    const user = userEvent.setup()
-    
     // Returning user with wallet connected and name set
     mockUseAccount.mockReturnValue({
       isConnected: true,
@@ -121,8 +119,6 @@ describe('User Flow Integration Tests', () => {
   })
 
   it('should handle wallet disconnect during session', async () => {
-    const user = userEvent.setup()
-    
     // Start with connected wallet and set name
     mockUseAccount.mockReturnValue({
       isConnected: true,
@@ -166,7 +162,7 @@ describe('User Flow Integration Tests', () => {
   })
 
   it('should handle name setting transaction failure and retry', async () => {
-    const user = userEvent.setup()
+    const userEventInstance = userEvent.setup()
     
     // Connected wallet, first time user
     mockUseAccount.mockReturnValue({
@@ -187,14 +183,14 @@ describe('User Flow Integration Tests', () => {
     
     // Open name input modal
     const setNameButton = screen.getByText('Set Your Name')
-    await user.click(setNameButton)
+    await userEventInstance.click(setNameButton)
     
     // Enter name and submit
     const nameInput = screen.getByPlaceholderText('Enter your name...')
-    await user.type(nameInput, 'John Doe')
+    await userEventInstance.type(nameInput, 'John Doe')
     
     const confirmButton = screen.getByText('Confirm')
-    await user.click(confirmButton)
+    await userEventInstance.click(confirmButton)
     
     // Simulate transaction error
     mockUseUserName.mockReturnValue({
@@ -224,12 +220,12 @@ describe('User Flow Integration Tests', () => {
     rerender(<Home />)
     
     // Try again
-    await user.click(confirmButton)
+    await userEventInstance.click(confirmButton)
     expect(mockSetName).toHaveBeenLastCalledWith('John Doe')
   })
 
   it('should handle loading states throughout the flow', async () => {
-    const user = userEvent.setup()
+    const userEventInstance = userEvent.setup()
     
     // Connected wallet, name setting in progress
     mockUseAccount.mockReturnValue({
@@ -250,7 +246,7 @@ describe('User Flow Integration Tests', () => {
     
     // Open name input modal
     const setNameButton = screen.getByText('Set Your Name')
-    await user.click(setNameButton)
+    await userEventInstance.click(setNameButton)
     
     // Should show loading state
     expect(screen.getByText('Setting name...')).toBeInTheDocument()
@@ -258,7 +254,7 @@ describe('User Flow Integration Tests', () => {
   })
 
   it('should maintain modal state consistency', async () => {
-    const user = userEvent.setup()
+    const userEventInstance = userEvent.setup()
     
     // Connected user with name set
     mockUseAccount.mockReturnValue({
@@ -279,14 +275,14 @@ describe('User Flow Integration Tests', () => {
     
     // Open give kindness modal
     const giveButton = screen.getByText('Give Kindness')
-    await user.click(giveButton)
+    await userEventInstance.click(giveButton)
     
     // Modal should be open
     expect(screen.getByText('🎁 Give Kindness')).toBeInTheDocument()
     
     // Close modal
     const closeButton = screen.getByText('×')
-    await user.click(closeButton)
+    await userEventInstance.click(closeButton)
     
     // Modal should be closed
     expect(screen.queryByText('🎁 Give Kindness')).not.toBeInTheDocument()

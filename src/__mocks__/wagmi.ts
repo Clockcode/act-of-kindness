@@ -81,3 +81,18 @@ export const formatEther = jest.fn((value: bigint) => {
 export const parseEther = jest.fn((value: string) => {
   return BigInt(Math.floor(parseFloat(value) * 1e18))
 })
+
+export const createConfig = jest.fn(() => ({}))
+export const createStorage = jest.fn(() => ({}))
+export const http = jest.fn(() => ({}))
+
+// Export default wagmi provider
+export const WagmiProvider = ({ children }: { children: React.ReactNode }) => children
+
+// Mock connectors
+export const injected = jest.fn(() => ({ id: 'injected', name: 'Injected' }))
+
+// Mock chains
+export const mainnet = { id: 1, name: 'Ethereum' }
+export const base = { id: 8453, name: 'Base' }
+export const localhost = { id: 31337, name: 'Localhost' }

@@ -44,7 +44,6 @@ describe('useContractConstants', () => {
 
   it('should handle contract values when available', () => {
     // Mock contract data for different calls
-    let callCount = 0
     mockUseReadContract.mockImplementation(({ functionName }) => {
       const mockValues: { [key: string]: any } = {
         'MIN_KINDNESS_AMOUNT': BigInt('10000000000000000'), // 0.01 ETH

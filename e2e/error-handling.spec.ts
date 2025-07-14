@@ -20,12 +20,8 @@ test.describe('Error Handling and Edge Cases', () => {
     homePage = new HomePage(page);
     nameModal = new UserNameInputModal(page);
     
-    // Start with clean state
+    // Start with clean state (this also navigates to the page)
     await clearAppState(page);
-    
-    // Navigate to home page
-    await homePage.goto();
-    await waitForPageLoad(page);
   });
 
   test('should handle wallet connection failures gracefully', async ({ page }) => {

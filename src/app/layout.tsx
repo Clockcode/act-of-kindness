@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import { Metadata, Viewport } from "next";
+import { Inter } from 'next/font/google';
 import {
   APP_DESCRIPTION,
   APP_FRAME_VERSION,
@@ -13,6 +14,14 @@ import { Layout } from "@/components/layout";
 import { Providers } from "@/context";
 import ErrorFilter from "@/components/client/ErrorFilter";
 import "@/assets/globals.css";
+
+// Optimize font loading
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-inter'
+});
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
@@ -63,8 +72,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout(props: PropsWithChildren) {
   return (
-    <html lang="en">
-      <body className={`antialiased`}>
+    <html lang="en" className={inter.variable}>
+      <body className={`antialiased font-sans ${inter.className}`}>
         <ErrorFilter />
         <Providers>
           <Layout>{props.children}</Layout>
