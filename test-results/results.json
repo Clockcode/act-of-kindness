@@ -9,7 +9,7 @@
     "globalTimeout": 0,
     "grep": {},
     "grepInvert": null,
-    "maxFailures": 3,
+    "maxFailures": 0,
     "metadata": {
       "actualWorkers": 5
     },
@@ -141,89 +141,6 @@
           "column": 6,
           "specs": [
             {
-              "title": "should display wallet connection flow for new users",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3751,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-07-04T16:54:41.746Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2a75df11d79450b0e6f5-c59676d1c5cefb0486f4",
-              "file": "user-onboarding.spec.ts",
-              "line": 26,
-              "column": 7
-            },
-            {
-              "title": "should progress to onboarding after wallet connection",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "interrupted",
-                      "duration": 25414,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "No data-testid elements found, continuing with test...\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-07-04T16:54:41.751Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-befe7-ing-after-wallet-connection-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-befe7-ing-after-wallet-connection-chromium/video.webm"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "skipped"
-                }
-              ],
-              "id": "2a75df11d79450b0e6f5-c491a5f7e28ecb8b8996",
-              "file": "user-onboarding.spec.ts",
-              "line": 42,
-              "column": 7
-            },
-            {
               "title": "should complete full first-time user onboarding flow",
               "ok": false,
               "tags": [],
@@ -236,34 +153,34 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 11604,
+                      "duration": 350,
                       "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByTestId('onboarding-flow')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('onboarding-flow')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByTestId('onboarding-flow')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('onboarding-flow')\u001b[22m\n\n    at HomePage.verifyConnectedNoNameState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts:202:39)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:67:20",
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n\n    at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24",
                         "location": {
-                          "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts",
-                          "column": 39,
-                          "line": 202
+                          "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                          "column": 14,
+                          "line": 120
                         },
-                        "snippet": "\u001b[90m   at \u001b[39mpages/HomePage.ts:202\n\n  200 |    */\n  201 |   async verifyConnectedNoNameState() {\n> 202 |     await expect(this.onboardingFlow).toBeVisible();\n      |                                       ^\n  203 |     await expect(this.onboardingTitle).toContainText('Welcome to the Kindness Community!');\n  204 |     await expect(this.setNameButton).toBeVisible();\n  205 |     await expect(this.walletConnectionFlow).not.toBeVisible();"
+                        "snippet": "\u001b[90m   at \u001b[39mutils/testHelpers.ts:120\n\n  118 | export async function clearAppState(page: Page) {\n  119 |   // Navigate to the page first\n> 120 |   await page.goto('/');\n      |              ^\n  121 |   await page.waitForLoadState('networkidle');\n  122 |   \n  123 |   try {"
                       },
                       "errors": [
                         {
                           "location": {
-                            "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts",
-                            "column": 39,
-                            "line": 202
+                            "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                            "column": 14,
+                            "line": 120
                           },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByTestId('onboarding-flow')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('onboarding-flow')\u001b[22m\n\n\n   at pages/HomePage.ts:202\n\n  200 |    */\n  201 |   async verifyConnectedNoNameState() {\n> 202 |     await expect(this.onboardingFlow).toBeVisible();\n      |                                       ^\n  203 |     await expect(this.onboardingTitle).toContainText('Welcome to the Kindness Community!');\n  204 |     await expect(this.setNameButton).toBeVisible();\n  205 |     await expect(this.walletConnectionFlow).not.toBeVisible();\n    at HomePage.verifyConnectedNoNameState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts:202:39)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:67:20"
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n\n\n   at utils/testHelpers.ts:120\n\n  118 | export async function clearAppState(page: Page) {\n  119 |   // Navigate to the page first\n> 120 |   await page.goto('/');\n      |              ^\n  121 |   await page.waitForLoadState('networkidle');\n  122 |   \n  123 |   try {\n    at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-04T16:54:41.772Z",
+                      "startTime": "2025-07-14T19:27:27.454Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -275,17 +192,12 @@
                           "name": "video",
                           "contentType": "video/webm",
                           "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-chromium/error-context.md"
                         }
                       ],
                       "errorLocation": {
-                        "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts",
-                        "column": 39,
-                        "line": 202
+                        "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                        "column": 14,
+                        "line": 120
                       }
                     }
                   ],
@@ -298,354 +210,284 @@
               "column": 7
             },
             {
-              "title": "should handle name validation correctly",
-              "ok": true,
+              "title": "should complete full first-time user onboarding flow",
+              "ok": false,
               "tags": [],
               "tests": [
                 {
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 631,
+                      "error": {
+                        "message": "Error: page.goto: NS_ERROR_CONNECTION_REFUSED\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: NS_ERROR_CONNECTION_REFUSED\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n\n    at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24",
+                        "location": {
+                          "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                          "column": 14,
+                          "line": 120
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mutils/testHelpers.ts:120\n\n  118 | export async function clearAppState(page: Page) {\n  119 |   // Navigate to the page first\n> 120 |   await page.goto('/');\n      |              ^\n  121 |   await page.waitForLoadState('networkidle');\n  122 |   \n  123 |   try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                            "column": 14,
+                            "line": 120
+                          },
+                          "message": "Error: page.goto: NS_ERROR_CONNECTION_REFUSED\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n\n\n   at utils/testHelpers.ts:120\n\n  118 | export async function clearAppState(page: Page) {\n  119 |   // Navigate to the page first\n> 120 |   await page.goto('/');\n      |              ^\n  121 |   await page.waitForLoadState('networkidle');\n  122 |   \n  123 |   try {\n    at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-07-14T19:27:27.471Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-firefox/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-firefox/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-firefox/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                        "column": 14,
+                        "line": 120
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2a75df11d79450b0e6f5-224ce3b9c27e26cc8d6f",
+              "file": "user-onboarding.spec.ts",
+              "line": 59,
+              "column": 7
+            },
+            {
+              "title": "should complete full first-time user onboarding flow",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 467,
+                      "error": {
+                        "message": "Error: page.goto: Could not connect to the server.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: Could not connect to the server.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n\n    at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24",
+                        "location": {
+                          "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                          "column": 14,
+                          "line": 120
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mutils/testHelpers.ts:120\n\n  118 | export async function clearAppState(page: Page) {\n  119 |   // Navigate to the page first\n> 120 |   await page.goto('/');\n      |              ^\n  121 |   await page.waitForLoadState('networkidle');\n  122 |   \n  123 |   try {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                            "column": 14,
+                            "line": 120
+                          },
+                          "message": "Error: page.goto: Could not connect to the server.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n\n\n   at utils/testHelpers.ts:120\n\n  118 | export async function clearAppState(page: Page) {\n  119 |   // Navigate to the page first\n> 120 |   await page.goto('/');\n      |              ^\n  121 |   await page.waitForLoadState('networkidle');\n  122 |   \n  123 |   try {\n    at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-07-14T19:27:27.468Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-webkit/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-webkit/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                        "column": 14,
+                        "line": 120
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2a75df11d79450b0e6f5-48f2de415d2a55ca71d4",
+              "file": "user-onboarding.spec.ts",
+              "line": 59,
+              "column": 7
+            },
+            {
+              "title": "should complete full first-time user onboarding flow",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
                   "results": [
                     {
                       "workerIndex": 3,
                       "parallelIndex": 3,
-                      "status": "interrupted",
-                      "duration": 25422,
-                      "errors": [],
-                      "stdout": [
+                      "status": "failed",
+                      "duration": 364,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n\n    at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24",
+                        "location": {
+                          "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                          "column": 14,
+                          "line": 120
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mutils/testHelpers.ts:120\n\n  118 | export async function clearAppState(page: Page) {\n  119 |   // Navigate to the page first\n> 120 |   await page.goto('/');\n      |              ^\n  121 |   await page.waitForLoadState('networkidle');\n  122 |   \n  123 |   try {"
+                      },
+                      "errors": [
                         {
-                          "text": "No data-testid elements found, continuing with test...\n"
+                          "location": {
+                            "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                            "column": 14,
+                            "line": 120
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n\n\n   at utils/testHelpers.ts:120\n\n  118 | export async function clearAppState(page: Page) {\n  119 |   // Navigate to the page first\n> 120 |   await page.goto('/');\n      |              ^\n  121 |   await page.waitForLoadState('networkidle');\n  122 |   \n  123 |   try {\n    at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24"
                         }
                       ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-04T16:54:41.741Z",
+                      "startTime": "2025-07-14T19:27:27.453Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-de499-e-name-validation-correctly-chromium/test-failed-1.png"
+                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-Mobile-Chrome/test-failed-1.png"
                         },
                         {
                           "name": "video",
                           "contentType": "video/webm",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-de499-e-name-validation-correctly-chromium/video.webm"
+                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-Mobile-Chrome/video.webm"
                         }
-                      ]
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                        "column": 14,
+                        "line": 120
+                      }
                     }
                   ],
-                  "status": "skipped"
+                  "status": "unexpected"
                 }
               ],
-              "id": "2a75df11d79450b0e6f5-ff19114db0e5d18385b8",
+              "id": "2a75df11d79450b0e6f5-4b125858010dbcdf9dd0",
               "file": "user-onboarding.spec.ts",
-              "line": 97,
+              "line": 59,
               "column": 7
             },
             {
-              "title": "should show returning user state correctly",
-              "ok": true,
+              "title": "should complete full first-time user onboarding flow",
+              "ok": false,
               "tags": [],
               "tests": [
                 {
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
                   "results": [
                     {
                       "workerIndex": 4,
                       "parallelIndex": 4,
-                      "status": "interrupted",
-                      "duration": 25408,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "No data-testid elements found, continuing with test...\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-07-04T16:54:41.781Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-b9518-urning-user-state-correctly-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-b9518-urning-user-state-correctly-chromium/video.webm"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "skipped"
-                }
-              ],
-              "id": "2a75df11d79450b0e6f5-38b5cf56533a7114b164",
-              "file": "user-onboarding.spec.ts",
-              "line": 122,
-              "column": 7
-            },
-            {
-              "title": "should handle wallet disconnection during session",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 9937,
+                      "duration": 457,
                       "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByTestId('welcome-message')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('welcome-message')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByTestId('welcome-message')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('welcome-message')\u001b[22m\n\n    at HomePage.verifyReturningUserState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts:213:39)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:149:20",
+                        "message": "Error: page.goto: Could not connect to the server.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: Could not connect to the server.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n\n    at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24",
                         "location": {
-                          "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts",
-                          "column": 39,
-                          "line": 213
+                          "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                          "column": 14,
+                          "line": 120
                         },
-                        "snippet": "\u001b[90m   at \u001b[39mpages/HomePage.ts:213\n\n  211 |    */\n  212 |   async verifyReturningUserState(expectedUserName: string) {\n> 213 |     await expect(this.welcomeMessage).toBeVisible();\n      |                                       ^\n  214 |     await expect(this.welcomeText).toContainText(`Welcome back, ${expectedUserName}!`);\n  215 |     await expect(this.mainActions).toBeVisible();\n  216 |     await expect(this.giveKindnessButton).toBeVisible();"
+                        "snippet": "\u001b[90m   at \u001b[39mutils/testHelpers.ts:120\n\n  118 | export async function clearAppState(page: Page) {\n  119 |   // Navigate to the page first\n> 120 |   await page.goto('/');\n      |              ^\n  121 |   await page.waitForLoadState('networkidle');\n  122 |   \n  123 |   try {"
                       },
                       "errors": [
                         {
                           "location": {
-                            "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts",
-                            "column": 39,
-                            "line": 213
+                            "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                            "column": 14,
+                            "line": 120
                           },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByTestId('welcome-message')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('welcome-message')\u001b[22m\n\n\n   at pages/HomePage.ts:213\n\n  211 |    */\n  212 |   async verifyReturningUserState(expectedUserName: string) {\n> 213 |     await expect(this.welcomeMessage).toBeVisible();\n      |                                       ^\n  214 |     await expect(this.welcomeText).toContainText(`Welcome back, ${expectedUserName}!`);\n  215 |     await expect(this.mainActions).toBeVisible();\n  216 |     await expect(this.giveKindnessButton).toBeVisible();\n    at HomePage.verifyReturningUserState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts:213:39)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:149:20"
+                          "message": "Error: page.goto: Could not connect to the server.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3001/\", waiting until \"load\"\u001b[22m\n\n\n   at utils/testHelpers.ts:120\n\n  118 | export async function clearAppState(page: Page) {\n  119 |   // Navigate to the page first\n> 120 |   await page.goto('/');\n      |              ^\n  121 |   await page.waitForLoadState('networkidle');\n  122 |   \n  123 |   try {\n    at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-04T16:54:45.775Z",
+                      "startTime": "2025-07-14T19:27:27.457Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2dcae-isconnection-during-session-chromium/test-failed-1.png"
+                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-Mobile-Safari/test-failed-1.png"
                         },
                         {
                           "name": "video",
                           "contentType": "video/webm",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2dcae-isconnection-during-session-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2dcae-isconnection-during-session-chromium/error-context.md"
+                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-Mobile-Safari/video.webm"
                         }
                       ],
                       "errorLocation": {
-                        "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts",
-                        "column": 39,
-                        "line": 213
+                        "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts",
+                        "column": 14,
+                        "line": 120
                       }
                     }
                   ],
                   "status": "unexpected"
                 }
               ],
-              "id": "2a75df11d79450b0e6f5-38aa3a6a572135e48ec7",
+              "id": "2a75df11d79450b0e6f5-ee432922b6dd0fa54669",
               "file": "user-onboarding.spec.ts",
-              "line": 144,
-              "column": 7
-            },
-            {
-              "title": "should maintain state consistency across page refreshes",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 5,
-                      "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 12582,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByTestId('set-name-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('set-name-button')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByTestId('set-name-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('set-name-button')\u001b[22m\n\n    at HomePage.clickSetName (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts:159:38)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:167:20",
-                        "location": {
-                          "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts",
-                          "column": 38,
-                          "line": 159
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mpages/HomePage.ts:159\n\n  157 |    */\n  158 |   async clickSetName() {\n> 159 |     await expect(this.setNameButton).toBeVisible();\n      |                                      ^\n  160 |     await this.setNameButton.click();\n  161 |   }\n  162 |"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts",
-                            "column": 38,
-                            "line": 159
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByTestId('set-name-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('set-name-button')\u001b[22m\n\n\n   at pages/HomePage.ts:159\n\n  157 |    */\n  158 |   async clickSetName() {\n> 159 |     await expect(this.setNameButton).toBeVisible();\n      |                                      ^\n  160 |     await this.setNameButton.click();\n  161 |   }\n  162 |\n    at HomePage.clickSetName (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts:159:38)\n    at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:167:20"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-07-04T16:54:54.538Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-60dad-tency-across-page-refreshes-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-60dad-tency-across-page-refreshes-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-60dad-tency-across-page-refreshes-chromium/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts",
-                        "column": 38,
-                        "line": 159
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "2a75df11d79450b0e6f5-38cf3ff5c73aad0f4407",
-              "file": "user-onboarding.spec.ts",
-              "line": 162,
-              "column": 7
-            },
-            {
-              "title": "should handle network errors gracefully",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 6,
-                      "parallelIndex": 0,
-                      "status": "interrupted",
-                      "duration": 10787,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-07-04T16:54:56.382Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-abe9b-e-network-errors-gracefully-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/cagdasmuldur/Projects/act-of-kindness/test-results/user-onboarding-User-Onboa-abe9b-e-network-errors-gracefully-chromium/error-context.md"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "skipped"
-                }
-              ],
-              "id": "2a75df11d79450b0e6f5-7e8904cded2ef712794c",
-              "file": "user-onboarding.spec.ts",
-              "line": 182,
-              "column": 7
-            },
-            {
-              "title": "should display correct loading states",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [],
-                  "status": "skipped"
-                }
-              ],
-              "id": "2a75df11d79450b0e6f5-197f53375ce478530767",
-              "file": "user-onboarding.spec.ts",
-              "line": 208,
-              "column": 7
-            },
-            {
-              "title": "should validate user input thoroughly",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [],
-                  "status": "skipped"
-                }
-              ],
-              "id": "2a75df11d79450b0e6f5-dfac6271c1b46cbd7f80",
-              "file": "user-onboarding.spec.ts",
-              "line": 229,
-              "column": 7
-            },
-            {
-              "title": "should track user flow progression correctly",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [],
-                  "status": "skipped"
-                }
-              ],
-              "id": "2a75df11d79450b0e6f5-ada92ea4f927a415208a",
-              "file": "user-onboarding.spec.ts",
-              "line": 258,
+              "line": 59,
               "column": 7
             }
           ]
@@ -653,17 +495,13 @@
       ]
     }
   ],
-  "errors": [
-    {
-      "message": "\u001b[31mTesting stopped early after 3 maximum allowed failures.\u001b[39m"
-    }
-  ],
+  "errors": [],
   "stats": {
-    "startTime": "2025-07-04T16:54:41.294Z",
-    "duration": 26179.343,
-    "expected": 1,
-    "skipped": 7,
-    "unexpected": 3,
+    "startTime": "2025-07-14T19:27:27.121Z",
+    "duration": 1987.972,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 5,
     "flaky": 0
   }
 }

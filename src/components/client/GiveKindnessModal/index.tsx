@@ -41,9 +41,9 @@ export default function GiveKindnessModal({ onClose }: GiveKindnessModalProps) {
   // Get dynamic constants from contract
   const constants = useContractConstants();
   
-  const minAmount = constants.minKindnessAmount;
-  const maxAmount = constants.maxKindnessAmount;
-  const maxDailyAmount = constants.maxDailyContribution;
+  const minAmount = constants.minKindnessAmount || 0.001;
+  const maxAmount = constants.maxKindnessAmount || 1;
+  const maxDailyAmount = constants.maxDailyContribution || 5;
   const canContribute = userStats ? userStats[4] : true;
   const remainingLimit = remainingContribution ? parseFloat(formatEther(remainingContribution)) : maxDailyAmount;
 

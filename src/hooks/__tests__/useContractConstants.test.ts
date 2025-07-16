@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react'
 import { useContractConstants } from '../useContractConstants'
 import { useReadContract } from 'wagmi'
+import { beforeEach, describe, expect, it, jest } from '@jest/globals'
 
 jest.mock('wagmi')
 
@@ -9,7 +10,7 @@ const mockUseReadContract = useReadContract as jest.MockedFunction<typeof useRea
 describe('useContractConstants', () => {
   beforeEach(() => {
     jest.clearAllMocks()
-    
+
     // Default mock setup - return undefined for all contract reads (development mode)
     mockUseReadContract.mockReturnValue({
       data: undefined,
@@ -32,14 +33,22 @@ describe('useContractConstants', () => {
     expect(result.current.maxReceivers).toBeDefined()
     expect(result.current.actionCooldownHours).toBeDefined()
     expect(result.current.receiverPoolCooldownMinutes).toBeDefined()
-    
-    // Raw values should be undefined in development mode
-    expect(result.current.raw.minKindnessAmount).toBeUndefined()
-    expect(result.current.raw.maxKindnessAmount).toBeUndefined()
-    expect(result.current.raw.maxDailyContribution).toBeUndefined()
-    expect(result.current.raw.maxReceivers).toBeUndefined()
-    expect(result.current.raw.actionCooldown).toBeUndefined()
-    expect(result.current.raw.receiverPoolCooldown).toBeUndefined()
+
+    // Raw values should have fallback values in development mode
+    expect(result.current.raw.minKindnessAmount).toBeDefined()
+    expect(result.current.raw.maxKindnessAmount).toBeDefined()
+    expect(result.current.raw.maxDailyContribution).toBeDefined()
+    expect(result.current.raw.maxReceivers).toBeDefined()
+    expect(result.current.raw.actionCooldown).toBeDefined()
+    expect(result.current.raw.receiverPoolCooldown).toBeDefined()
+
+    // Should be BigInt values
+    expect(typeof result.current.raw.minKindnessAmount).toBe('bigint')
+    expect(typeof result.current.raw.maxKindnessAmount).toBe('bigint')
+    expect(typeof result.current.raw.maxDailyContribution).toBe('bigint')
+    expect(typeof result.current.raw.maxReceivers).toBe('bigint')
+    expect(typeof result.current.raw.actionCooldown).toBe('bigint')
+    expect(typeof result.current.raw.receiverPoolCooldown).toBe('bigint')
   })
 
   it('should handle contract values when available', () => {
@@ -132,7 +141,7 @@ describe('useContractConstants', () => {
 
     // actionCooldownHours should be a number (hours)
     expect(typeof result.current.actionCooldownHours).toBe('number')
-    
+
     // receiverPoolCooldownMinutes should be a number (minutes)
     expect(typeof result.current.receiverPoolCooldownMinutes).toBe('number')
   })
@@ -144,7 +153,7 @@ describe('useContractConstants', () => {
     expect(typeof result.current.minKindnessAmount).toBe('number')
     expect(typeof result.current.maxKindnessAmount).toBe('number')
     expect(typeof result.current.maxDailyContribution).toBe('number')
-    
+
     // maxReceivers should be a number
     expect(typeof result.current.maxReceivers).toBe('number')
   })

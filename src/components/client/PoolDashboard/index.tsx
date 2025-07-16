@@ -72,7 +72,7 @@ export default function PoolDashboard() {
   });
 
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-6">
+    <div className="w-full max-w-4xl mx-auto space-y-6" data-testid="pool-dashboard">
       {/* Pool Statistics */}
       <div className="card bg-base-100 shadow-lg">
         <div className="card-body">

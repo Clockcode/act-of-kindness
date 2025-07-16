@@ -39,3 +39,25 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Test artifacts and temporary files
+/test-results/
+/playwright-report/
+/coverage/
+*.log
+frontend-dev.log
+
+# Media files (videos, images, screenshots)
+*.mp4
+*.avi
+*.mov
+*.webm
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.webp
+**/screenshots/
+**/videos/
+**/test-results/

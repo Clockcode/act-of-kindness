@@ -15,6 +15,7 @@ const config = {
     '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '^wagmi$': '<rootDir>/src/__mocks__/wagmi.ts',
+    '^wagmi/connectors$': '<rootDir>/src/__mocks__/wagmi.ts',
     '^viem$': '<rootDir>/src/__mocks__/wagmi.ts',
     '^next/image$': '<rootDir>/src/__mocks__/next-image.tsx',
     '^next/link$': '<rootDir>/src/__mocks__/next-link.tsx',
@@ -28,7 +29,7 @@ const config = {
     '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
   },
   transformIgnorePatterns: [
-    'node_modules/(?!(wagmi|viem|@wagmi|@tanstack)/)',
+    'node_modules/(?!(wagmi|viem|@wagmi|@tanstack|@coinbase)/)',
   ],
 }
 

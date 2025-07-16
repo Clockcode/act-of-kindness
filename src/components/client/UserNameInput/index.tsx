@@ -9,15 +9,15 @@ interface UserNameInputProps {
 
 export default function UserNameInput({ onClose }: UserNameInputProps) {
   const { 
-    localName, 
-    setLocalName, 
-    setUserName, 
-    isSettingName, 
-    hasName,
-    isTransactionPending,
-    isTransactionLoading,
-    error: transactionError
-  } = useUserName();
+    localName = '', 
+    setLocalName = () => {}, 
+    setUserName = () => {}, 
+    isSettingName = false, 
+    hasName = false,
+    isTransactionPending = false,
+    isTransactionLoading = false,
+    error: transactionError = null
+  } = useUserName() || {};
   const [error, setError] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -109,7 +109,7 @@ export default function UserNameInput({ onClose }: UserNameInputProps) {
               </p>
             )}
             <p className="text-xs text-gray-500 mt-1">
-              {localName.length}/32 characters
+              {(localName || '').length}/32 characters
             </p>
           </div>
 
@@ -123,7 +123,7 @@ export default function UserNameInput({ onClose }: UserNameInputProps) {
             <button
               type="submit"
               className="flex-1 bg-primary hover:bg-primary/90 disabled:bg-gray-400 text-white py-3 px-4 rounded-lg font-medium flex items-center justify-center transition-colors"
-              disabled={!localName.trim() || isSettingName}
+              disabled={!(localName || '').trim() || isSettingName}
               data-testid="submit-name-button"
             >
               {isTransactionPending ? (

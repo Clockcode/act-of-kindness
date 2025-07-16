@@ -96,3 +96,23 @@ export const injected = jest.fn(() => ({ id: 'injected', name: 'Injected' }))
 export const mainnet = { id: 1, name: 'Ethereum' }
 export const base = { id: 8453, name: 'Base' }
 export const localhost = { id: 31337, name: 'Localhost' }
+
+// Mock any other exports that might be needed
+export default {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useReadContract,
+  useWriteContract,
+  useWaitForTransactionReceipt,
+  formatEther,
+  parseEther,
+  createConfig,
+  createStorage,
+  http,
+  WagmiProvider,
+  injected,
+  mainnet,
+  base,
+  localhost,
+}

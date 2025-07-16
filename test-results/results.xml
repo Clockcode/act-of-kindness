@@ -1,36 +1,25 @@
-<testsuites id="" name="" tests="11" failures="3" skipped="7" errors="0" time="26.179343">
-<testsuite name="user-onboarding.spec.ts" timestamp="2025-07-04T16:54:41.372Z" hostname="chromium" tests="11" failures="3" skipped="7" time="124.905" errors="0">
-<testcase name="User Onboarding Flow › should display wallet connection flow for new users" classname="user-onboarding.spec.ts" time="3.751">
-</testcase>
-<testcase name="User Onboarding Flow › should progress to onboarding after wallet connection" classname="user-onboarding.spec.ts" time="25.414">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="User Onboarding Flow › should complete full first-time user onboarding flow" classname="user-onboarding.spec.ts" time="11.604">
+<testsuites id="" name="" tests="5" failures="5" skipped="0" errors="0" time="1.987972">
+<testsuite name="user-onboarding.spec.ts" timestamp="2025-07-14T19:27:27.149Z" hostname="chromium" tests="1" failures="1" skipped="0" time="0.35" errors="0">
+<testcase name="User Onboarding Flow › should complete full first-time user onboarding flow" classname="user-onboarding.spec.ts" time="0.35">
 <failure message="user-onboarding.spec.ts:59:7 should complete full first-time user onboarding flow" type="FAILURE">
 <![CDATA[  [chromium] › user-onboarding.spec.ts:59:7 › User Onboarding Flow › should complete full first-time user onboarding flow 
 
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: getByTestId('onboarding-flow')
-    Expected: visible
-    Received: <element(s) not found>
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/
     Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByTestId('onboarding-flow')
+      - navigating to "http://localhost:3001/", waiting until "load"
 
 
-       at pages/HomePage.ts:202
+       at utils/testHelpers.ts:120
 
-      200 |    */
-      201 |   async verifyConnectedNoNameState() {
-    > 202 |     await expect(this.onboardingFlow).toBeVisible();
-          |                                       ^
-      203 |     await expect(this.onboardingTitle).toContainText('Welcome to the Kindness Community!');
-      204 |     await expect(this.setNameButton).toBeVisible();
-      205 |     await expect(this.walletConnectionFlow).not.toBeVisible();
-        at HomePage.verifyConnectedNoNameState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts:202:39)
-        at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:67:20
+      118 | export async function clearAppState(page: Page) {
+      119 |   // Navigate to the page first
+    > 120 |   await page.goto('/');
+          |              ^
+      121 |   await page.waitForLoadState('networkidle');
+      122 |   
+      123 |   try {
+        at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)
+        at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-chromium/test-failed-1.png
@@ -39,8 +28,6 @@
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
     test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-chromium/video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-chromium/error-context.md
 ]]>
 </failure>
 <system-out>
@@ -48,128 +35,172 @@
 [[ATTACHMENT|user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-chromium/test-failed-1.png]]
 
 [[ATTACHMENT|user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-chromium/video.webm]]
-
-[[ATTACHMENT|user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-chromium/error-context.md]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="User Onboarding Flow › should handle name validation correctly" classname="user-onboarding.spec.ts" time="25.422">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="User Onboarding Flow › should show returning user state correctly" classname="user-onboarding.spec.ts" time="25.408">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="User Onboarding Flow › should handle wallet disconnection during session" classname="user-onboarding.spec.ts" time="9.937">
-<failure message="user-onboarding.spec.ts:144:7 should handle wallet disconnection during session" type="FAILURE">
-<![CDATA[  [chromium] › user-onboarding.spec.ts:144:7 › User Onboarding Flow › should handle wallet disconnection during session 
+</testsuite>
+<testsuite name="user-onboarding.spec.ts" timestamp="2025-07-14T19:27:27.149Z" hostname="firefox" tests="1" failures="1" skipped="0" time="0.631" errors="0">
+<testcase name="User Onboarding Flow › should complete full first-time user onboarding flow" classname="user-onboarding.spec.ts" time="0.631">
+<failure message="user-onboarding.spec.ts:59:7 should complete full first-time user onboarding flow" type="FAILURE">
+<![CDATA[  [firefox] › user-onboarding.spec.ts:59:7 › User Onboarding Flow › should complete full first-time user onboarding flow 
 
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: getByTestId('welcome-message')
-    Expected: visible
-    Received: <element(s) not found>
+    Error: page.goto: NS_ERROR_CONNECTION_REFUSED
     Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByTestId('welcome-message')
+      - navigating to "http://localhost:3001/", waiting until "load"
 
 
-       at pages/HomePage.ts:213
+       at utils/testHelpers.ts:120
 
-      211 |    */
-      212 |   async verifyReturningUserState(expectedUserName: string) {
-    > 213 |     await expect(this.welcomeMessage).toBeVisible();
-          |                                       ^
-      214 |     await expect(this.welcomeText).toContainText(`Welcome back, ${expectedUserName}!`);
-      215 |     await expect(this.mainActions).toBeVisible();
-      216 |     await expect(this.giveKindnessButton).toBeVisible();
-        at HomePage.verifyReturningUserState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts:213:39)
-        at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:149:20
+      118 | export async function clearAppState(page: Page) {
+      119 |   // Navigate to the page first
+    > 120 |   await page.goto('/');
+          |              ^
+      121 |   await page.waitForLoadState('networkidle');
+      122 |   
+      123 |   try {
+        at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)
+        at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results/user-onboarding-User-Onboa-2dcae-isconnection-during-session-chromium/test-failed-1.png
+    test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-firefox/test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    test-results/user-onboarding-User-Onboa-2dcae-isconnection-during-session-chromium/video.webm
+    test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-firefox/video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ../test-results/user-onboarding-User-Onboa-2dcae-isconnection-during-session-chromium/error-context.md
+    Error Context: ../test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-firefox/error-context.md
 ]]>
 </failure>
 <system-out>
 <![CDATA[
-[[ATTACHMENT|user-onboarding-User-Onboa-2dcae-isconnection-during-session-chromium/test-failed-1.png]]
+[[ATTACHMENT|user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-firefox/test-failed-1.png]]
 
-[[ATTACHMENT|user-onboarding-User-Onboa-2dcae-isconnection-during-session-chromium/video.webm]]
+[[ATTACHMENT|user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-firefox/video.webm]]
 
-[[ATTACHMENT|user-onboarding-User-Onboa-2dcae-isconnection-during-session-chromium/error-context.md]]
+[[ATTACHMENT|user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-firefox/error-context.md]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="User Onboarding Flow › should maintain state consistency across page refreshes" classname="user-onboarding.spec.ts" time="12.582">
-<failure message="user-onboarding.spec.ts:162:7 should maintain state consistency across page refreshes" type="FAILURE">
-<![CDATA[  [chromium] › user-onboarding.spec.ts:162:7 › User Onboarding Flow › should maintain state consistency across page refreshes 
+</testsuite>
+<testsuite name="user-onboarding.spec.ts" timestamp="2025-07-14T19:27:27.149Z" hostname="webkit" tests="1" failures="1" skipped="0" time="0.467" errors="0">
+<testcase name="User Onboarding Flow › should complete full first-time user onboarding flow" classname="user-onboarding.spec.ts" time="0.467">
+<failure message="user-onboarding.spec.ts:59:7 should complete full first-time user onboarding flow" type="FAILURE">
+<![CDATA[  [webkit] › user-onboarding.spec.ts:59:7 › User Onboarding Flow › should complete full first-time user onboarding flow 
 
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: getByTestId('set-name-button')
-    Expected: visible
-    Received: <element(s) not found>
+    Error: page.goto: Could not connect to the server.
     Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByTestId('set-name-button')
+      - navigating to "http://localhost:3001/", waiting until "load"
 
 
-       at pages/HomePage.ts:159
+       at utils/testHelpers.ts:120
 
-      157 |    */
-      158 |   async clickSetName() {
-    > 159 |     await expect(this.setNameButton).toBeVisible();
-          |                                      ^
-      160 |     await this.setNameButton.click();
-      161 |   }
-      162 |
-        at HomePage.clickSetName (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/pages/HomePage.ts:159:38)
-        at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:167:20
+      118 | export async function clearAppState(page: Page) {
+      119 |   // Navigate to the page first
+    > 120 |   await page.goto('/');
+          |              ^
+      121 |   await page.waitForLoadState('networkidle');
+      122 |   
+      123 |   try {
+        at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)
+        at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results/user-onboarding-User-Onboa-60dad-tency-across-page-refreshes-chromium/test-failed-1.png
+    test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-webkit/test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    test-results/user-onboarding-User-Onboa-60dad-tency-across-page-refreshes-chromium/video.webm
+    test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-webkit/video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/user-onboarding-User-Onboa-60dad-tency-across-page-refreshes-chromium/error-context.md
 ]]>
 </failure>
 <system-out>
 <![CDATA[
-[[ATTACHMENT|user-onboarding-User-Onboa-60dad-tency-across-page-refreshes-chromium/test-failed-1.png]]
+[[ATTACHMENT|user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-webkit/test-failed-1.png]]
 
-[[ATTACHMENT|user-onboarding-User-Onboa-60dad-tency-across-page-refreshes-chromium/video.webm]]
-
-[[ATTACHMENT|user-onboarding-User-Onboa-60dad-tency-across-page-refreshes-chromium/error-context.md]]
+[[ATTACHMENT|user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-webkit/video.webm]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="User Onboarding Flow › should handle network errors gracefully" classname="user-onboarding.spec.ts" time="10.787">
-<skipped>
-</skipped>
+</testsuite>
+<testsuite name="user-onboarding.spec.ts" timestamp="2025-07-14T19:27:27.149Z" hostname="Mobile Chrome" tests="1" failures="1" skipped="0" time="0.364" errors="0">
+<testcase name="User Onboarding Flow › should complete full first-time user onboarding flow" classname="user-onboarding.spec.ts" time="0.364">
+<failure message="user-onboarding.spec.ts:59:7 should complete full first-time user onboarding flow" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › user-onboarding.spec.ts:59:7 › User Onboarding Flow › should complete full first-time user onboarding flow 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3001/
+    Call log:
+      - navigating to "http://localhost:3001/", waiting until "load"
+
+
+       at utils/testHelpers.ts:120
+
+      118 | export async function clearAppState(page: Page) {
+      119 |   // Navigate to the page first
+    > 120 |   await page.goto('/');
+          |              ^
+      121 |   await page.waitForLoadState('networkidle');
+      122 |   
+      123 |   try {
+        at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)
+        at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-Mobile-Chrome/video.webm]]
+]]>
+</system-out>
 </testcase>
-<testcase name="User Onboarding Flow › should display correct loading states" classname="user-onboarding.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="User Onboarding Flow › should validate user input thoroughly" classname="user-onboarding.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="User Onboarding Flow › should track user flow progression correctly" classname="user-onboarding.spec.ts" time="0">
-<skipped>
-</skipped>
+</testsuite>
+<testsuite name="user-onboarding.spec.ts" timestamp="2025-07-14T19:27:27.149Z" hostname="Mobile Safari" tests="1" failures="1" skipped="0" time="0.457" errors="0">
+<testcase name="User Onboarding Flow › should complete full first-time user onboarding flow" classname="user-onboarding.spec.ts" time="0.457">
+<failure message="user-onboarding.spec.ts:59:7 should complete full first-time user onboarding flow" type="FAILURE">
+<![CDATA[  [Mobile Safari] › user-onboarding.spec.ts:59:7 › User Onboarding Flow › should complete full first-time user onboarding flow 
+
+    Error: page.goto: Could not connect to the server.
+    Call log:
+      - navigating to "http://localhost:3001/", waiting until "load"
+
+
+       at utils/testHelpers.ts:120
+
+      118 | export async function clearAppState(page: Page) {
+      119 |   // Navigate to the page first
+    > 120 |   await page.goto('/');
+          |              ^
+      121 |   await page.waitForLoadState('networkidle');
+      122 |   
+      123 |   try {
+        at clearAppState (/Users/cagdasmuldur/Projects/act-of-kindness/e2e/utils/testHelpers.ts:120:14)
+        at /Users/cagdasmuldur/Projects/act-of-kindness/e2e/user-onboarding.spec.ts:23:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|user-onboarding-User-Onboa-2b97e-t-time-user-onboarding-flow-Mobile-Safari/video.webm]]
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>

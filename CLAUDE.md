@@ -1,16 +1,56 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code when working with this repository.
 
-## Development Commands
+## 📝 LEARNING NOTES
 
-- `yarn dev` - Start development server on localhost:3001
-- `yarn tunnel` - Run ngrok tunnel for Farcaster preview (run parallel to dev)
-- `yarn build` - Build production version
-- `yarn start` - Start production server
-- `yarn lint` - Run ESLint
+**Instructions for Claude**: Keep track of important learnings here as you work on tasks. Add new discoveries, solutions to complex problems, gotchas, and patterns you discover.
 
-## Architecture Overview
+### Current Learnings
+- Smart contracts are production-ready in `../kindness-pool/` with 95%+ test coverage
+- Frontend ABIs match deployed contracts exactly
+- Test suite has ESM transform issues with wagmi/viem that need resolution
+- Withdrawal system UI exists but functionality is not implemented
+- **Wallet → Name → Main App Flow Analysis (2025-01-14)**:
+  - Flow is well-structured with clear state transitions in `src/app/page.tsx`
+  - Uses conditional rendering based on `isConnected` and `hasName` states
+  - `useUserName` hook handles both development and production modes with localStorage fallback
+  - Modal components are dynamically imported for performance
+  - E2E test infrastructure exists with comprehensive page objects in `e2e/pages/`
+  - Fixed WalletConnect component tests - they now pass with proper mocking
+  - Created comprehensive E2E test for the complete flow: `e2e/wallet-to-main-flow.spec.ts`
+  - Component hierarchy: WalletConnect → Onboarding → UserNameInput → Main App
+  - State persistence works through localStorage in development mode
+
+---
+
+## 🚀 QUICK START & CRITICAL INFO
+
+### Essential Commands
+```bash
+yarn dev          # Start development server (localhost:3001)
+yarn tunnel       # Run ngrok tunnel for Farcaster (parallel to dev)
+yarn build        # Build production version
+yarn start        # Start production server
+yarn lint         # Run ESLint (must pass with 0 errors)
+yarn test         # Run unit/integration tests
+yarn test:e2e     # Run E2E tests
+```
+
+### Pre-Development Checklist
+1. `yarn lint` - Must pass with 0 errors
+2. `yarn test` - Must pass all tests  
+3. `yarn build` - Must build successfully
+
+### 🎯 CRITICAL PRIORITIES (P0 - Launch Blockers)
+1. **Smart Contract Deployment** (1-2h) - Deploy from `../kindness-pool/` to testnet
+2. **Fix Test Suite** (3-4h) - Fix wagmi/viem ESM issues, achieve >80% coverage
+3. **Withdrawal System** (4-6h) - Implement `withdrawContribution` functionality
+4. **Environment Config** (1h) - Create `.env.local` with production variables
+
+---
+
+## 🏗️ ARCHITECTURE OVERVIEW
 
 This is a **Farcaster Mini App** built with Next.js 15 and React 19, designed as a "Random Act of Kindness" daily kindness economy app.
 
@@ -76,7 +116,7 @@ Frame configuration requires Farcaster account association (header, payload, sig
 
 ---
 
-## 🧪 Testing Guidelines
+## 🧪 TESTING GUIDELINES
 
 ### Testing Philosophy
 Every new feature **MUST** be built with comprehensive tests. Tests should focus on **end-to-end user experience** and aim for **full coverage from a user's perspective**.
@@ -217,7 +257,7 @@ const MOCK_TRANSACTION = {
 
 ---
 
-## 📋 Code Quality & Linting
+## 📋 CODE QUALITY & LINTING
 
 ### Linting Requirements
 - **Zero tolerance** for lint errors in production builds
@@ -231,12 +271,6 @@ Current rules focus on:
 - **React best practices**
 - **Unused variable/import detection**
 - **Accessibility (a11y) compliance**
-
-### Pre-Development Checklist
-Before starting any feature:
-1. ✅ Run `yarn lint` to ensure clean baseline
-2. ✅ Run `yarn test` to ensure all tests pass
-3. ✅ Run `yarn build` to verify production build
 
 ### Common Lint Issues to Avoid
 ```typescript
@@ -266,7 +300,7 @@ const handleClick = () => {
 
 ---
 
-## 🚀 Feature Development Workflow
+## 🚀 FEATURE DEVELOPMENT WORKFLOW
 
 ### Development Process
 Every new feature must follow this workflow:
@@ -324,7 +358,7 @@ git commit -m "feat: add user profile management with edit capabilities
 
 ---
 
-## 🎯 Industry Patterns & Best Practices
+## 🎯 INDUSTRY PATTERNS & BEST PRACTICES
 
 ### React/Next.js Patterns
 
@@ -538,7 +572,7 @@ function App() {
 
 ---
 
-## 📝 Documentation Requirements
+## 📝 DOCUMENTATION REQUIREMENTS
 
 ### Code Documentation
 - **Component props**: Always document with TypeScript interfaces
@@ -871,7 +905,7 @@ yarn build        # Must build successfully
 
 ---
 
-## 🔄 Continuous Integration
+## 🔄 CONTINUOUS INTEGRATION
 
 ### Pre-commit Requirements
 Before every commit:
